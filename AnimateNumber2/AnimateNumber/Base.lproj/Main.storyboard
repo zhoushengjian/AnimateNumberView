@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jbb-b1-uSb" customClass="WLAnimateNumberView">
+                                <rect key="frame" x="16" y="88.5" width="240" height="50"/>
+                                <color key="backgroundColor" red="0.062745098040000002" green="0.65098039220000004" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="XP5-oH-uiB"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" red="0.7843137255" green="0.64705882349999999" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isAttributeString" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSmallSize">
+                                        <real key="value" value="21"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="textAlignment">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yvp-oF-haL">
+                                <rect key="frame" x="278" y="92" width="78" height="43"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="78" id="R3A-cK-XZd"/>
+                                    <constraint firstAttribute="height" constant="43" id="Ycz-63-rtF"/>
+                                </constraints>
+                                <state key="normal" title="滚动">
+                                    <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="upScrollAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IOI-zt-Jfq"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rxf-D9-AY9" customClass="WLAnimateNumberView">
+                                <rect key="frame" x="16" y="199" width="240" height="43"/>
+                                <color key="backgroundColor" red="0.062745098040000002" green="0.65098039220000004" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="898-2O-caW"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="33"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" red="0.7843137255" green="0.64705882349999999" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isAttributeString" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSmallSize">
+                                        <real key="value" value="33"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="textAlignment">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDC-4D-9jy">
+                                <rect key="frame" x="278" y="199" width="78" height="43"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="4ae-Gc-b3I"/>
+                                    <constraint firstAttribute="width" constant="78" id="5eX-eu-O4o"/>
+                                </constraints>
+                                <state key="normal" title="滚动">
+                                    <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="interactScrollAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VLp-yT-QMh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Yvp-oF-haL" firstAttribute="centerY" secondItem="Jbb-b1-uSb" secondAttribute="centerY" id="1C4-aH-bY0"/>
+                            <constraint firstItem="Yvp-oF-haL" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="72" id="K7E-yh-0Ta"/>
+                            <constraint firstItem="dDC-4D-9jy" firstAttribute="centerY" secondItem="Rxf-D9-AY9" secondAttribute="centerY" id="KBk-6p-T0W"/>
+                            <constraint firstItem="Rxf-D9-AY9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="TVM-9K-Iwk"/>
+                            <constraint firstItem="Yvp-oF-haL" firstAttribute="leading" secondItem="Jbb-b1-uSb" secondAttribute="trailing" constant="22" id="VPE-nd-5dk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Yvp-oF-haL" secondAttribute="trailing" constant="3" id="a2Z-ks-hDj"/>
+                            <constraint firstItem="dDC-4D-9jy" firstAttribute="top" secondItem="Yvp-oF-haL" secondAttribute="bottom" constant="64" id="jSy-Lf-ciI"/>
+                            <constraint firstItem="Jbb-b1-uSb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="nKF-jN-Akk"/>
+                            <constraint firstAttribute="trailing" secondItem="dDC-4D-9jy" secondAttribute="trailing" constant="19" id="w6h-KP-X5f"/>
+                            <constraint firstItem="dDC-4D-9jy" firstAttribute="leading" secondItem="Rxf-D9-AY9" secondAttribute="trailing" constant="22" id="wHC-oh-F9J"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="animateNormalView" destination="Rxf-D9-AY9" id="8Ec-72-9Qm"/>
+                        <outlet property="animateNumberView" destination="Jbb-b1-uSb" id="8Bp-Pe-Hya"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="141.59999999999999" y="138.98050974512745"/>
+        </scene>
+    </scenes>
+</document>
