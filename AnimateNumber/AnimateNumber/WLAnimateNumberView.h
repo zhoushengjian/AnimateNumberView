@@ -15,8 +15,12 @@
 @property (nonatomic, assign) IBInspectable CGFloat fontSize;
 @property (nonatomic, assign) IBInspectable CGFloat fontSmallSize;
 @property (nonatomic, strong) IBInspectable UIColor *textColor;
+@property (nonatomic, copy) IBInspectable NSString *fontName;
 /** 1：左对齐 2：居中 3：右对齐 */
 @property (nonatomic, assign) IBInspectable NSInteger textAlignment;
+
+@property (nonatomic, strong) NSMutableArray *digitViews;
+
 
 @end
 

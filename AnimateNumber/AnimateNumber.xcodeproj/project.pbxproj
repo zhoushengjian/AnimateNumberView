@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		5A67E3501E64183400317179 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A67E34F1E64183400317179 /* UIView+Frame.m */; };
+		5A6CF2A91F163B0A00D6E100 /* DINCond-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5A6CF2A81F163B0A00D6E100 /* DINCond-Bold.otf */; };
+		5A6CF2AA1F163BEF00D6E100 /* DINCond-Bold.otf in Sources */ = {isa = PBXBuildFile; fileRef = 5A6CF2A81F163B0A00D6E100 /* DINCond-Bold.otf */; };
 		5AA950031EAF2B8F0033D804 /* WLAnimateNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA950021EAF2B8F0033D804 /* WLAnimateNumberView.m */; };
-		AC1A22E51E515CA70067DCA8 /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1A22E41E515CA70067DCA8 /* CustomView.m */; };
+		5AA950521EB9CFFC0033D804 /* WLSepcAnimateNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA950511EB9CFFC0033D804 /* WLSepcAnimateNumberView.m */; };
 		AC5B2F0E1E48651D00028C64 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B2F0D1E48651D00028C64 /* main.m */; };
 		AC5B2F111E48651D00028C64 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B2F101E48651D00028C64 /* AppDelegate.m */; };
 		AC5B2F141E48651D00028C64 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B2F131E48651D00028C64 /* ViewController.m */; };
@@ -40,10 +42,11 @@
 /* Begin PBXFileReference section */
 		5A67E34E1E64183400317179 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		5A67E34F1E64183400317179 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		5A6CF2A81F163B0A00D6E100 /* DINCond-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINCond-Bold.otf"; sourceTree = "<group>"; };
 		5AA950011EAF2B8F0033D804 /* WLAnimateNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLAnimateNumberView.h; sourceTree = "<group>"; };
 		5AA950021EAF2B8F0033D804 /* WLAnimateNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLAnimateNumberView.m; sourceTree = "<group>"; };
-		AC1A22E31E515CA70067DCA8 /* CustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomView.h; sourceTree = "<group>"; };
-		AC1A22E41E515CA70067DCA8 /* CustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomView.m; sourceTree = "<group>"; };
+		5AA950501EB9CFFC0033D804 /* WLSepcAnimateNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLSepcAnimateNumberView.h; sourceTree = "<group>"; };
+		5AA950511EB9CFFC0033D804 /* WLSepcAnimateNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLSepcAnimateNumberView.m; sourceTree = "<group>"; };
 		AC5B2F091E48651D00028C64 /* AnimateNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimateNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC5B2F0D1E48651D00028C64 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AC5B2F0F1E48651D00028C64 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -110,17 +113,18 @@
 		AC5B2F0B1E48651D00028C64 /* AnimateNumber */ = {
 			isa = PBXGroup;
 			children = (
-				5AA950011EAF2B8F0033D804 /* WLAnimateNumberView.h */,
-				5AA950021EAF2B8F0033D804 /* WLAnimateNumberView.m */,
-				5A67E34E1E64183400317179 /* UIView+Frame.h */,
-				5A67E34F1E64183400317179 /* UIView+Frame.m */,
 				AC5B2F0F1E48651D00028C64 /* AppDelegate.h */,
 				AC5B2F101E48651D00028C64 /* AppDelegate.m */,
 				AC5B2F121E48651D00028C64 /* ViewController.h */,
 				AC5B2F131E48651D00028C64 /* ViewController.m */,
-				AC1A22E31E515CA70067DCA8 /* CustomView.h */,
-				AC1A22E41E515CA70067DCA8 /* CustomView.m */,
+				5AA950011EAF2B8F0033D804 /* WLAnimateNumberView.h */,
+				5AA950021EAF2B8F0033D804 /* WLAnimateNumberView.m */,
+				5AA950501EB9CFFC0033D804 /* WLSepcAnimateNumberView.h */,
+				5AA950511EB9CFFC0033D804 /* WLSepcAnimateNumberView.m */,
+				5A67E34E1E64183400317179 /* UIView+Frame.h */,
+				5A67E34F1E64183400317179 /* UIView+Frame.m */,
 				AC5B2F151E48651D00028C64 /* Main.storyboard */,
+				5A6CF2A81F163B0A00D6E100 /* DINCond-Bold.otf */,
 				AC5B2F181E48651D00028C64 /* Assets.xcassets */,
 				AC5B2F1A1E48651D00028C64 /* LaunchScreen.storyboard */,
 				AC5B2F1D1E48651D00028C64 /* Info.plist */,
@@ -261,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A6CF2A91F163B0A00D6E100 /* DINCond-Bold.otf in Resources */,
 				AC5B2F1C1E48651D00028C64 /* LaunchScreen.storyboard in Resources */,
 				AC5B2F191E48651D00028C64 /* Assets.xcassets in Resources */,
 				AC5B2F171E48651D00028C64 /* Main.storyboard in Resources */,
@@ -288,10 +293,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A6CF2AA1F163BEF00D6E100 /* DINCond-Bold.otf in Sources */,
+				5AA950521EB9CFFC0033D804 /* WLSepcAnimateNumberView.m in Sources */,
 				5A67E3501E64183400317179 /* UIView+Frame.m in Sources */,
 				AC5B2F141E48651D00028C64 /* ViewController.m in Sources */,
 				5AA950031EAF2B8F0033D804 /* WLAnimateNumberView.m in Sources */,
-				AC1A22E51E515CA70067DCA8 /* CustomView.m in Sources */,
 				AC5B2F111E48651D00028C64 /* AppDelegate.m in Sources */,
 				AC5B2F0E1E48651D00028C64 /* main.m in Sources */,
 			);

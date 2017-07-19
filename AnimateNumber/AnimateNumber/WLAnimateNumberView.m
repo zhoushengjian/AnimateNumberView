@@ -10,7 +10,7 @@
 #import "UIView+Frame.h"
 
 #define stringFormat(string) (string == nil)?@"":[@"<null>" isEqualToString:[NSString stringWithFormat:@"%@",string]]?@"":[NSString stringWithFormat:@"%@",string]
-
+#define kFontName @"PingFangSC-Regular"
 
 @implementation WLAnimateNumberCell
 
@@ -35,10 +35,11 @@
 
 @interface WLAnimateNumberView () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSMutableArray *digitViews;
 @property (nonatomic, strong) NSArray *digits;
 @property (nonatomic, assign) CGFloat digitWidth;
 @property (nonatomic, assign) CGFloat digitSmallWidth;
+@property (assign, nonatomic) CGFloat commaViewWidth;
+@property (assign, nonatomic) CGFloat dotViewWidth;
 
 @property (nonatomic, strong) UILabel *placeHoldLabel;
 
@@ -66,8 +67,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.backgroundColor = [UIColor clearColor];
-    
 }
 
 - (void)layoutSubviews {
@@ -76,9 +75,7 @@
         
     _dotDigitsViewTag = 1000;
     _commaDigitsViewTag = 1000;
-    CGFloat dotViewW = floor(self.fontSize/3);
-    CGFloat commaViewW =floor(self.fontSize/3);
-    CGFloat textWidth = [self countTextWidth:_text dotViewW:dotViewW commaViewW:commaViewW];
+    CGFloat textWidth = [self calculateTextWidth:_text];
     
     CGFloat digitViewX = 0;
     if (_textAlignment == 3) {
@@ -87,16 +84,20 @@
         digitViewX = (self.width-textWidth)/2;
     }
     
+    NSArray *digitViews = [self.digitViews copy];
     for (int i=0; i<_text.length; i++) {
-        UITableView *digitView = self.digitViews[i];
-        [self digitView:digitView digitViewX:digitViewX isSmallFont:(i>_dotDigitsViewTag)&&_isAttributeString];
+        UITableView *digitView = digitViews[i];
+        
+        BOOL isSmallFont = (i>_dotDigitsViewTag)&&_isAttributeString;
+        [self digitView:digitView digitViewX:digitViewX isSmallFont:isSmallFont];
+        
         NSString *subString = [_text substringWithRange:NSMakeRange(i, 1)];
         if ([subString isEqualToString:@"."]) {
-            digitViewX += dotViewW;
+            digitViewX += _dotViewWidth;
         }else if ([subString isEqualToString:@","]) {
-            digitViewX += commaViewW;
+            digitViewX += _commaViewWidth;
         }else {
-            digitViewX += ((i>_dotDigitsViewTag)&&_isAttributeString)?_digitSmallWidth:_digitWidth;
+            digitViewX += isSmallFont?_digitSmallWidth:_digitWidth;
         }
     }
 }
@@ -127,14 +128,9 @@
 
 - (void)setFontSize:(CGFloat)fontSize {
     _fontSize = fontSize;
-    _digitWidth = floor(fontSize/2.0)+(fontSize<=20?2:3);
     _placeHoldLabel.font = [UIFont systemFontOfSize:fontSize];
 }
 
-- (void)setFontSmallSize:(CGFloat)fontSmallSize {
-    _fontSmallSize = fontSmallSize;
-    _digitSmallWidth = floor(fontSmallSize/2.0)+(fontSmallSize<=20?2:3);
-}
 
 - (void)setTextAlignment:(NSInteger)textAlignment {
     _textAlignment = textAlignment;
@@ -162,11 +158,6 @@
         }
         [self.digitViews removeAllObjects];
         
-        CGFloat dotViewW = floor(self.fontSize/3);
-        CGFloat commaViewW =floor(self.fontSize/3);
-        //确定小数点和顿号位置
-        [self countTextWidth:text dotViewW:dotViewW commaViewW:commaViewW];
-        
         for (int i=0; i<text.length; i++) {
             [self creatTableView:i];
         }
@@ -176,8 +167,9 @@
     
     _text = text;
     
+    NSArray *digitViews = [self.digitViews copy];
     for (int i=0; i<text.length; i++) {
-        UITableView *tableView = self.digitViews[i];
+        UITableView *tableView = digitViews[i];
         
         NSString *digit = [NSString stringWithFormat:@"%@", [text substringWithRange:NSMakeRange(i, 1)]];
         NSInteger row = [digit integerValue];
@@ -233,39 +225,71 @@
 }
 
 - (void)digitView:(UITableView *)digitView digitViewX:(CGFloat)digitViewX isSmallFont:(BOOL)isSmallFont {
-    digitView.frame = CGRectMake(digitViewX, 0, _digitWidth, self.fontSize);
+    
+    CGFloat digitViewY = (self.height-self.fontSize)/2;
+    
+    digitView.frame = CGRectMake(digitViewX, digitViewY, _digitWidth, self.fontSize);
     
     if (isSmallFont) {
-        
-        CGFloat extraY = round(_fontSize/_fontSmallSize)>=2?round(_fontSize/_fontSmallSize):1;
-        digitView.frame = CGRectMake(digitViewX, (_fontSize-_fontSmallSize)-extraY, _digitSmallWidth, _fontSmallSize);
+        CGFloat extraY = round(_fontSize/_fontSmallSize)>=2?:1;
+        digitView.frame = CGRectMake(digitViewX, digitViewY+(_fontSize-_fontSmallSize)-extraY, _digitSmallWidth, _fontSmallSize);
     }
     
     NSString *subString = [_text substringWithRange:NSMakeRange(digitView.tag, 1)];
     if ([subString isEqualToString:@"."]) {
-        digitView.width = self.fontSize/3;//dotViewW;
+        digitView.width = _dotViewWidth;//dotViewW;
     }
     if ([subString isEqualToString:@","]) {
-        digitView.width = self.fontSize/3;//commaViewW;
+        digitView.width = _commaViewWidth;//commaViewW;
     }
 }
 
-- (CGFloat)countTextWidth:(NSString *)text dotViewW:(CGFloat)dotViewW commaViewW:(CGFloat)commaViewW {
+- (CGFloat)calculateTextWidth:(NSString *)text {
+    
+    [self countDigitWidth];
+    
     CGFloat textWidth=0;
+    
     for (int i=0; i<text.length; i++) {
+        
         NSString *subString = [text substringWithRange:NSMakeRange(i, 1)];
+
+        BOOL isSmallfont = ((i>_dotDigitsViewTag)&&_isAttributeString);
+
         if ([subString isEqualToString:@"."]) {
-            textWidth += dotViewW;
+            
+            textWidth += _dotViewWidth;
             _dotDigitsViewTag = i;
         }else if ([subString isEqualToString:@","]) {
-            textWidth += commaViewW;
+            
+            textWidth += _commaViewWidth;
             _commaDigitsViewTag = i;
         }else {
-            textWidth += ((i>_dotDigitsViewTag)&&_isAttributeString)?self.digitSmallWidth:self.digitWidth;
+        
+            textWidth += isSmallfont? _digitSmallWidth:_digitWidth;
+            
         }
     }
     
     return textWidth;
+}
+
+- (void)countDigitWidth {
+    UILabel *label = [[UILabel alloc] init];
+    label.font = [UIFont fontWithName:_fontName?:kFontName size:_fontSize];
+    label.text = @"0";
+    [label sizeToFit];
+    _digitWidth = label.width;
+    label.text = @".";
+    [label sizeToFit];
+    _dotViewWidth = label.width;
+    label.text = @",";
+    [label sizeToFit];
+    _commaViewWidth = label.width;
+    label.font = [UIFont fontWithName:_fontName?:kFontName size:_fontSmallSize];
+    label.text = @"0";
+    [label sizeToFit];
+    _digitSmallWidth = label.width;
 }
 
 - (BOOL)text:(NSString *)text isSameFormatWithText:(NSString *)text1 {
@@ -294,10 +318,11 @@
     WLAnimateNumberCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
         cell = [[WLAnimateNumberCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.label.textColor = self.textColor;
+
     }
     cell.backgroundColor = [UIColor clearColor];
-    cell.label.font = [UIFont systemFontOfSize:(tableView.tag>_dotDigitsViewTag)&&_isAttributeString?self.fontSmallSize:self.fontSize];
-    cell.label.textColor = self.textColor;
+    cell.label.font = [UIFont fontWithName:_fontName?: kFontName size:(tableView.tag>_dotDigitsViewTag)&&_isAttributeString?self.fontSmallSize:self.fontSize];
     
     if (tableView.tag == _dotDigitsViewTag) {
         cell.label.text = @".";
@@ -306,7 +331,6 @@
 
     }else {
         cell.label.text = [NSString stringWithFormat:@"%@", self.digits[indexPath.row%10]];
-
     }
     
     return cell;

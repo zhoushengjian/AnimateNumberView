@@ -8,10 +8,12 @@
 
 #import "ViewController.h"
 #import "WLAnimateNumberView.h"
+#import "WLSepcAnimateNumberView.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet WLAnimateNumberView *animateNumberView;
 @property (weak, nonatomic) IBOutlet WLAnimateNumberView *animateNormalView;
+@property (weak, nonatomic) IBOutlet WLSepcAnimateNumberView *sepcNumberView;
 
 @end
 
@@ -22,11 +24,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
     _number = 1233213.0012;
     self.animateNumberView.text = [NSString stringWithFormat:@"%.5lf", _number];
-    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -44,14 +44,17 @@
         [_timer invalidate];
     }
     _timer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        _number += 0.003345;
+        _number += 0.87897;
         weakSelf.animateNumberView.text = [NSString stringWithFormat:@"%.5f", _number];
+        
+        weakSelf.animateNormalView.text = [NSString stringWithFormat:@"%.3f", _number];
+        
+        weakSelf.sepcNumberView.text = [NSString stringWithFormat:@"%9.f", _number];
     }];
 }
 
 - (IBAction)interactScrollAction:(id)sender {
-    _number += 0.87897;
-    self.animateNormalView.text = [NSString stringWithFormat:@"%.5f", _number];
+   
 }
 
 @end
